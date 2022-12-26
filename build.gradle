@@ -1,0 +1,39 @@
+plugins {
+    id "io.spring.dependency-management" version "1.1.0"
+    id 'com.github.johnrengelman.shadow' version '7.1.2' apply false
+}
+
+allprojects {
+    group "ru.otus"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+
+    apply plugin: "io.spring.dependency-management"
+    dependencyManagement {
+        dependencies {
+            imports {
+                mavenBom "org.springframework.boot:spring-boot-dependencies:3.0.1"
+                mavenBom "org.testcontainers:testcontainers-bom:1.17.6"
+                mavenBom "com.google.protobuf:protobuf-bom:3.21.12"
+            }
+            dependency "com.google.guava:guava:${Versions.guava}"
+        }
+    }
+}
+
+//./gradlew -q managedVersions
+tasks.register("managedVersions") {
+    doLast {
+        dependencyManagement.managedVersions.each {
+            println it
+        }
+    }
+}
+
+//./gradlew -q hello
+tasks.register("hello") { hello ->
+    println 'Hello world!'
+}
