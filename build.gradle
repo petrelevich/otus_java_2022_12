@@ -20,6 +20,10 @@ allprojects {
                 mavenBom "com.google.protobuf:protobuf-bom:3.21.12"
             }
             dependency "com.google.guava:guava:${Versions.guava}"
+            dependency "org.openjdk.jmh:jmh-core:${Versions.jmh}"
+            dependency "org.openjdk.jmh:jmh-generator-annprocess:${Versions.jmh}"
+            dependency "org.ow2.asm:asm-commons:${Versions.asm}"
+
         }
     }
 
