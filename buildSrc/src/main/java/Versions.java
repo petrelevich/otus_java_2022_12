@@ -16,4 +16,6 @@ public interface Versions {
     String jetty = "11.0.14";
     String freemarker = "2.3.32";
 
+    String reflections = "0.10.2";
+
 }
