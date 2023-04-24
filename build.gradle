@@ -39,6 +39,12 @@ allprojects {
             dependency("org.neo4j.driver:neo4j-java-driver:${Versions.neo4j}")
             dependency("redis.clients:jedis:${Versions.jedis}")
 
+            dependency("org.webjars:sockjs-client:${Versions.sockjs}")
+            dependency("org.webjars:stomp-websocket:${Versions.stomp}")
+            dependency("org.webjars:bootstrap:${Versions.bootstrap}")
+            dependency("org.springdoc:springdoc-openapi-starter-webmvc-ui:${Versions.springDocOpenapiUi}")
+            dependency("com.google.code.findbugs:jsr305:${Versions.jsr305}")
+
         }
     }
 
