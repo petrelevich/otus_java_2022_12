@@ -11,7 +11,7 @@ public class SwaggerConfig {
     //http://localhost:8080/swagger-ui
 
     @Bean
-    public GroupedOpenApi publicApi(@Value("${application.rest.api.prefix}/v1")String prefix) {
+    public GroupedOpenApi publicApi(@Value("${application.rest.api.prefix}/v2")String prefix) {
         return GroupedOpenApi.builder()
                 .group("DemoApplication")
                 .pathsToMatch(String.format("%s/**", prefix))
