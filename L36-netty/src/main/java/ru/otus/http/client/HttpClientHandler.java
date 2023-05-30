@@ -15,10 +15,9 @@ public class HttpClientHandler extends SimpleChannelInboundHandler<HttpObject> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx, HttpObject msg) {
         logger.info("income message:{}", msg);
-        if (msg instanceof HttpContent) {
-            var content = (HttpContent) msg;
-
-            logger.info("content from server:{}", content.content().toString(CharsetUtil.UTF_8));
+        if (msg instanceof HttpContent content) {
+            var contentAsString = content.content().toString(CharsetUtil.UTF_8);
+            logger.info("content from server:{}", contentAsString);
 
             if (content instanceof LastHttpContent) {
                 ctx.close();
