@@ -13,9 +13,16 @@ create table client
 );
 create index idx_client_manager_id on client (manager_id);
 
-
 create table client_details
 (
     client_id bigint      not null references client (id),
     info      varchar(50) not null
 );
+
+create table table_with_pk
+(
+    id_part1 varchar(10),
+    id_part2 varchar(100),
+    value    varchar(100)
+);
+alter table table_with_pk add primary key (id_part1, id_part2);

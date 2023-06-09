@@ -7,8 +7,10 @@ import org.springframework.stereotype.Component;
 import ru.otus.crm.model.Client;
 import ru.otus.crm.model.ClientDetails;
 import ru.otus.crm.model.Manager;
+import ru.otus.crm.model.TableWithPk;
 import ru.otus.crm.repository.ClientRepository;
 import ru.otus.crm.repository.ManagerRepository;
+import ru.otus.crm.repository.TableWithPkRepository;
 import ru.otus.crm.service.DBServiceClient;
 import ru.otus.crm.service.DBServiceManager;
 
@@ -26,12 +28,16 @@ public class ActionDemo implements CommandLineRunner {
     private final DBServiceClient dbServiceClient;
     private final DBServiceManager dbServiceManager;
 
+    private final TableWithPkRepository tableWithPkRepository;
+
     public ActionDemo(ClientRepository clientRepository, ManagerRepository managerRepository,
-                      DBServiceClient dbServiceClient, DBServiceManager dbServiceManager) {
+                      DBServiceClient dbServiceClient, DBServiceManager dbServiceManager,
+                      TableWithPkRepository tableWithPkRepository) {
         this.managerRepository = managerRepository;
         this.clientRepository = clientRepository;
         this.dbServiceClient = dbServiceClient;
         this.dbServiceManager = dbServiceManager;
+        this.tableWithPkRepository = tableWithPkRepository;
     }
 
     @Override
@@ -116,5 +122,17 @@ public class ActionDemo implements CommandLineRunner {
         var allManagers = managerRepository.findAll();
         log.info(">>> allManagers.size():{}", allManagers.size());
         log.info(">>> allManagers:{}", allManagers);
+
+        ///
+        log.info(">>> TableWithPkRepository");
+        var pk = new TableWithPk.Pk("p1", String.valueOf(System.currentTimeMillis()));
+        TableWithPk tableWithPk = new TableWithPk(pk, "value", true);
+        log.info("tableWithPk:{}", tableWithPk);
+
+        tableWithPkRepository.saveEntry(tableWithPk);
+
+
+        TableWithPk loadedTableWithPk = tableWithPkRepository.findById(pk).orElseThrow();
+        log.info("loadedTableWithPk:{}", loadedTableWithPk);
     }
 }
