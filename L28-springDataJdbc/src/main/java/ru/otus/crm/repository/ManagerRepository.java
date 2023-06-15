@@ -1,13 +1,12 @@
 package ru.otus.crm.repository;
 
-import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.ListCrudRepository;
 import ru.otus.crm.model.Manager;
 
 import java.util.List;
 
 
-public interface ManagerRepository extends CrudRepository<Manager, String> {
+public interface ManagerRepository extends ListCrudRepository<Manager, String> {
 
     // закоментируйте, чтобы получить N+1
 /*

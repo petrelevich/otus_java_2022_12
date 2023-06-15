@@ -59,29 +59,6 @@ public class TableWithPk implements Persistable<TableWithPk.Pk> {
                 '}';
     }
 
-    public static class Pk {
-        private final String idPart1;
-        private final String idPart2;
-
-        public Pk(String idPart1, String idPart2) {
-            this.idPart1 = idPart1;
-            this.idPart2 = idPart2;
-        }
-
-        public String getIdPart1() {
-            return idPart1;
-        }
-
-        public String getIdPart2() {
-            return idPart2;
-        }
-
-        @Override
-        public String toString() {
-            return "Pk{" +
-                    "idPart1='" + idPart1 + '\'' +
-                    ", idPart2='" + idPart2 + '\'' +
-                    '}';
-        }
+    public record Pk(String idPart1, String idPart2) {
     }
 }
